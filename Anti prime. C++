@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+// function to find divisors of a number
+int Divisors(int a)
+{
+    if (a == 1)
+        return 1;
+ 
+    // Now Finding number of all the factors
+    int f = 2;
+    for (int i = 2; i * i <= a; i++) {
+        if (a % i == 0) {
+            if (i * i != a) {
+                f += 2;
+            }
+            else
+                f++;
+        }
+    }
+    return f;
+}
+ 
+// Function to check number is Anti Prime(Highly
+// Composite) Number or not.
+bool isAntiPrime(int n)
+{
+    int init = Divisors(n);
+    for (int i = 1; i < n; i++) {
+        if (Divisors(i) >= init)
+ 
+            return false;
+    }
+    return true;
+}
+ 
+int main()
+{
+ 
+    int N = 5040;
+ 
+    // Function Call
+    if (isAntiPrime(N))
+        cout << N << " is anti-prime\n";
+    else
+        cout << N << " is not anti-prime\n";
+}
